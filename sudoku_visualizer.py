@@ -32,7 +32,7 @@ class visualSudoku(Sudoku):
 
 
 def draw(board, position=None):
-    gameDisplay.fill((255, 255, 255))
+    display.fill((255, 255, 255))
     draw_board(board, position)
     draw_lines()
     draw_solve_box()
@@ -53,30 +53,30 @@ def draw_board(board, position):
                 text = font.render(num, True, (0, 0, 0))
             textRect = text.get_rect()
             textRect.center = ((((j+1)*WIDTH//9)+(j*WIDTH//9))//2, (((i+1)*HEIGHT//9)+(i*HEIGHT//9))//2)
-            gameDisplay.blit(text, textRect)
+            display.blit(text, textRect)
 
 
 def draw_lines():
     line_width = 2
     for i in range(9):
         if i % 3 == 0:
-            pygame.draw.line(gameDisplay, (0, 0, 0), (i*WIDTH//9, 0), (i*WIDTH//9, WIDTH), line_width+2)
+            pygame.draw.line(display, (0, 0, 0), (i*WIDTH//9, 0), (i*WIDTH//9, WIDTH), line_width+2)
         else:
-            pygame.draw.line(gameDisplay, (0, 0, 0), (i*WIDTH//9, 0), (i*WIDTH//9, WIDTH), line_width)
-    pygame.draw.line(gameDisplay, (0, 0, 0), (WIDTH-line_width, 0), (WIDTH-line_width, HEIGHT), line_width+2)
+            pygame.draw.line(display, (0, 0, 0), (i*WIDTH//9, 0), (i*WIDTH//9, WIDTH), line_width)
+    pygame.draw.line(display, (0, 0, 0), (WIDTH-line_width, 0), (WIDTH-line_width, HEIGHT), line_width+2)
     for j in range(10):
         if j % 3 == 0:
-            pygame.draw.line(gameDisplay, (0, 0, 0), (0, j*HEIGHT//9), (HEIGHT, j*HEIGHT//9), line_width+2)
+            pygame.draw.line(display, (0, 0, 0), (0, j*HEIGHT//9), (HEIGHT, j*HEIGHT//9), line_width+2)
         else:
-            pygame.draw.line(gameDisplay, (0, 0, 0), (0, j*HEIGHT//9), (HEIGHT, j*HEIGHT//9), line_width)
+            pygame.draw.line(display, (0, 0, 0), (0, j*HEIGHT//9), (HEIGHT, j*HEIGHT//9), line_width)
 
 
 def draw_solve_box():
-    box = pygame.draw.rect(gameDisplay, (0, 0, 0), (350, HEIGHT + 12, 200, 75), width = 2)
+    box = pygame.draw.rect(display, (0, 0, 0), (350, HEIGHT + 12, 200, 75), width = 2)
     text = font.render('Solve', True, (0, 0, 0))
     textRect = text.get_rect()
     textRect.center = box.center
-    gameDisplay.blit(text, textRect)
+    display.blit(text, textRect)
 
 
 def find_box(x, y):
@@ -138,8 +138,7 @@ if __name__ == '__main__':
     TIMER = 0.05
 
     pygame.init()
-    gameDisplay = pygame.display.set_mode(RESOLUTION)
+    display = pygame.display.set_mode(RESOLUTION)
     pygame.display.set_caption('Sudoku')
     font = pygame.font.Font('freesansbold.ttf', 48)
     run()
-
